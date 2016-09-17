@@ -6,17 +6,25 @@ def prime(n)
       is_prime = false
     end
   end
-  if is_prime
-    print "p#{n} -> #{n}, "
-  end
+  return is_prime
 end
 
 def prime_hash(k)
-    print "{ "
-    for i in 2..k
-        prime(i)
+    my_hash = {}
+    count = 1
+    i = 2
+    loop do 
+        break if count > k
+        if prime(i)
+            my_hash["p"+count.to_s] = i
+            count +=1
+        end
+        i += 1
     end
-    print "}"
+    
+    return my_hash
 end
 
-prime_hash(17)
+result = prime_hash(100)
+
+result.each { |key, value| puts "#{key} -> #{value}" }
